@@ -2,27 +2,6 @@
 #include<string.h>
 #include<stdlib.h>
 
-/* 
-   count -> count to allocate dynamic array
-   line -> count of line
-   initial -> 
-   final ->
-   ln[] -> int array to store line numbers arr[]
-   ln1[] -> int array to store line numbers in arr1[]
-	
-   curr_pos -> to store current position in file after detecting loop/if-else block 
-
-   a[] -> to read file
-   var[] -> LHS
-   var1[] -> RHS
-   tm[] ->
-   op[] -> operators
-   ival[] ->
-   tvar[] ->
-
-*/
-
-
 void dependency(char ***,int,int*,int,int);
 int * storing(char ***,char *,int,int,int,int*,int,char *,char *);
 void storing1(char ***,int ,int ,char * ,int ,char*,int,int,char *);
@@ -45,7 +24,7 @@ main(){
     fscanf(fp,"%s",a);     		
     printf("\nRESULT.....>\n\n");
 
-    //CALCULATING THE NO OF VARIABLES
+    // READING THE FILE TO CALCULATE NO OF VARIABLES
     while(!feof(fp)){
 
 	//checking for pf/sf in a[]
@@ -95,8 +74,9 @@ main(){
 
     }
 
-    //READING THE FILE
+    //READING THE FILE AGAIN TO FIND DIFFERENT CONSTRUCTS LIKE LOOP(FOR/WHILE), CONTROL STATEMENTS(IF/ELSE), ASSIGNMENTS  
     fp=fopen("file2.c","r");
+    //scanning line by line
     fscanf(fp,"%[^\n]\n",a);
     line++;
 
@@ -114,7 +94,7 @@ main(){
 		
 	    //if(strstr(a,"while") && a[strlen(a)-1]==';');
 
-	    //OCCURENCE OF FOR/WHILE/DO-WHILE LOOP
+	    //OCCURENCE OF FOR/WHILE
 		
 	    if(strstr(a,"for") || strstr(a,"while")){	
 			
@@ -733,7 +713,7 @@ main(){
 	    }
 	
 	}
-	
+	//SCANNING NEXT LINE
 	fscanf(fp,"%[^\n]\n",a);	
 	line++;
     }	
@@ -748,7 +728,8 @@ main(){
     }
 
     printf("\n\n");
-
+    
+    //FREE PREVIOUSLY ALLOCATED MEMORY
     for(i=1;i<levels;i++){
 
 	for(j=0;j<count;j++){
