@@ -6,9 +6,8 @@ LHS_dict = {}
 RHS_dict = {}
 
 def counting_variables:
-	test_file = open(_file_name,'r+')
 	
-	for line in test_file:
+	for line in  open(_file_name,'r+'):
 		if 'int' in line or 'char' in line or 'double' in line or 'float' in line:
 			count += line.count(',') + 1
 	
@@ -16,6 +15,7 @@ def counting_variables:
 	return count
 
 def checking_constructs:
+
 	test_file = open(_file_name,'r+')
 	line_count = 1
 
@@ -34,8 +34,8 @@ def checking_constructs:
 			"if/else block at line number %d\n", % (line_count)
 			#TODO
 		
-		else if ';' in line and '=' in line:
-			"assignment at line number %d\n", % (line_count)
+		elif ';' in line and '=' in line:
+			print "assignment at line number %d\n", % (line_count)
 			storing_assigns(line,line_count)
 			
 			#TODO
